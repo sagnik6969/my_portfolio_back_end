@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')->only(['store']);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -20,11 +24,11 @@ class ProjectController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
-    {
+    // public function create(Request $request)
+    // {
 
 
-    }
+    // }
 
     /**
      * Store a newly created resource in storage.
