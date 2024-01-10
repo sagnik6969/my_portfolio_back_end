@@ -37,20 +37,20 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        Project::factory(15)->create();
+        // Project::factory(15)->create();
 
-        $storedSkills = Skill::all();
-        $storedProjects = Project::all();
+        // $storedSkills = Skill::all();
+        // $storedProjects = Project::all();
 
-        foreach ($storedProjects as $project) {
-            $randomSkills = $storedSkills->random(rand(1, 6));
+        // foreach ($storedProjects as $project) {
+        //     $randomSkills = $storedSkills->random(rand(1, 6));
 
-            foreach ($randomSkills as $skill) {
-                $project->projectSkills()->create([
-                    'skill_id' => $skill->id
-                ]);
-            }
-        }
+        //     foreach ($randomSkills as $skill) {
+        //         $project->projectSkills()->create([
+        //             'skill_id' => $skill->id
+        //         ]);
+        //     }
+        // }
 
         User::create([
             'name' => 'Sagnik Jana',
