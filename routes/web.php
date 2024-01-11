@@ -13,5 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/{path?}', 'welcome')->where("path", ".*");
-;
+Route::view('/{path?}', 'welcome')->where("path", "^(?!api).*$");
+// so that api routes are not matched
