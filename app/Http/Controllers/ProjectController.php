@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
 use App\Models\Skill;
 use Illuminate\Http\Request;
@@ -33,17 +34,9 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProjectRequest $request)
     {
-        $data = $request->validate(
-            [
-                'title' => 'required|string|max:255',
-                'description' => 'required|string',
-                'github_link' => 'required|url',
-                'live_link' => 'required|url',
-                'skills' => 'nullable|array'
-            ]
-        );
+        $data = $request->validated();
 
         $skills = $data['skills'] ?? [];
 
