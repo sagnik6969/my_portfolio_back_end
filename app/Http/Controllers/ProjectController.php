@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectRequest;
+use App\Http\Resources\ProjectResource;
 use App\Models\Project;
 use App\Models\Skill;
 use Illuminate\Http\Request;
@@ -19,7 +20,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return response()->json(Project::with('skills')->latest()->get());
+        // return response()->json(Project::with('skills')->latest()->get());
+        return ProjectResource::collection(Project::with('skills')->latest()->get());
     }
 
     /**
@@ -61,10 +63,13 @@ class ProjectController extends Controller
 
         });
 
+        $project = Project::findOrFail($project->id);
+        // The above line is required because the default image_link value is not added to $project
+        // automatically.
 
         $project->load('skills');
 
-        return response()->json($project);
+        return new ProjectResource($project);
     }
 
     /**
