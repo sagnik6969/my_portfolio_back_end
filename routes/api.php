@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LinkController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\MessageController;
 use Illuminate\Http\Request;
@@ -22,7 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('projects', ProjectController::class);
-Route::apiResource('message',MessageController::class);
+Route::apiResource('message', MessageController::class);
+Route::get('links/resume', [LinkController::class, 'getResumeLink']);
 
 Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout']);
