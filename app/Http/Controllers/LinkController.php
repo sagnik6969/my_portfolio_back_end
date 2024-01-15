@@ -9,6 +9,6 @@ class LinkController extends Controller
     public function getResumeLink(Request $request)
     {
 
-        return redirect(asset('storage/resume.pdf'));
+        return response()->download(public_path('storage/resume.pdf'), 'resume.pdf');
     }
 }
