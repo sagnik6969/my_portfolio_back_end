@@ -26,7 +26,8 @@ class ProjectRequest extends FormRequest
             'description' => 'required|string',
             'github_link' => 'required|url',
             'live_link' => 'required|url',
-            'skills' => 'nullable|array'
+            'skills' => 'nullable|array',
+            'image_file' => 'required|mimes:jpg,png|max:2048'
         ];
     }
 }

@@ -38,7 +38,19 @@ class ProjectController extends Controller
      */
     public function store(ProjectRequest $request)
     {
-        $data = $request->validated();
+
+        $image_file = $request->file('image_file');
+
+        $path = $image_file->store('/project_imgs', 'public');
+
+        $data = [
+            'title' => request()->title,
+            'description' => request()->description,
+            'github_link' => request()->github_link,
+            'live_link' => request()->live_link,
+            'image_link' => $path,
+            'skills' => request()->skills,
+        ];
 
         $skills = $data['skills'] ?? [];
 

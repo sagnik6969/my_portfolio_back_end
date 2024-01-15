@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectResource extends JsonResource
 {
@@ -13,6 +14,7 @@ class ProjectResource extends JsonResource
      * @return array<string, mixed>
      */
 
+
     public function toArray(Request $request): array
     {
         return [
@@ -21,9 +23,9 @@ class ProjectResource extends JsonResource
             'description' => $this->description,
             'github_link' => $this->github_link,
             'live_link' => $this->live_link,
-            'image_link' => $this->image_link,
-            'skills' => SkillResource::collection($this->whenLoaded('skills'))
-            // skills will only be added if it is eager loaded already
+            'image_link' => env('APP_URL', '') . '/storage/' . $this->image_link,
+            'skills' => SkillResource::collection($this->whenLoaded('skills')),
+
         ];
     }
 

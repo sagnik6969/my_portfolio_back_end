@@ -17,6 +17,7 @@ class Project extends Model
         'description',
         'github_link',
         'live_link',
+        'image_link'
     ];
     public function projectSkills(): HasMany
     {
