@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
+use App\Notifications\ThankYouForConnectingNotification;
 use Illuminate\Http\Request;
+use Notification;
 
 class MessageController extends Controller
 {
@@ -35,6 +37,11 @@ class MessageController extends Controller
         ]);
 
         $message = Message::create($data);
+
+        $first_name = explode(' ', trim($data['sender_name']))[0];
+
+        Notification::route('mail', $data['sender_email'])
+            ->notify(new ThankYouForConnectingNotification($first_name));
 
         return response()->json($message);
     }

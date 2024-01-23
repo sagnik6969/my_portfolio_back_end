@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Notifications\AdminLoginNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -43,6 +44,7 @@ class AuthController extends Controller
         $tokenExpirationTime = now()->addDays(2);
 
         $token = $user->createToken('api-token', ['*'], $tokenExpirationTime);
+        $user->notify(new AdminLoginNotification());
         return response()->json([
             'token' => $token->plainTextToken,
             'expiration_time' => $tokenExpirationTime->toISOString(),
