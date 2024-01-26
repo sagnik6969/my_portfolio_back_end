@@ -18,6 +18,6 @@ class UserHttpTest extends TestCase
 
         $response->assertStatus(200);
 
-        dump($response->json());
+        // dump($response->json());
     }
 }

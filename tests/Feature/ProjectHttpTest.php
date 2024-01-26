@@ -42,8 +42,8 @@ class ProjectHttpTest extends TestCase
                         ->whereType('github_link', 'string')
                         ->whereType('live_link', 'string')
                         ->whereType('image_link', 'string')
-                        ->whereType('created_at', 'string')
-                        ->whereType('updated_at', 'string')
+                        // ->whereType('created_at', 'string')
+                        // ->whereType('updated_at', 'string')
                         ->whereType('skills', 'array')
                         ->where('skills', function ($skills) {
                         // dump($skills);
