@@ -81,7 +81,7 @@ class ProjectController extends Controller
 
         $project->load('skills');
 
-        return new ProjectResource($project);
+        return (new ProjectResource($project))->response()->setStatusCode(201);
     }
 
     /**
